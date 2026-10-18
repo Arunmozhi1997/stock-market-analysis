@@ -2,20 +2,13 @@ import streamlit as st
 import pandas as pd
 from sqlalchemy import create_engine
 import plotly.express as px
+import os
 
 
 # DB Connection
 
-username = "postgres"
-password = "kovilvenni"
-host     = "localhost"
-port     = "5432"
-database = "stockdb"
-
-engine = create_engine(
-    f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}"
-)
-
+  
+engine = create_engine(os.getenv("DATABASE_URL"))
 
 @st.cache_data
 def load_table(table):
